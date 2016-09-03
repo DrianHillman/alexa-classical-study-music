@@ -4,15 +4,15 @@
 var audioData = [
     {
         'title' : 'Aria',
-        'url' : ''
+        'url' : 'https://github.com/DrianHillman/alexa-classical-study-music/raw/master/mp3/Bach-Open-Goldberg-Variations-Aria.mp3'
     },
     {
-        'title' : 'Variatio 1',
-        'url' : ''
+        'title' : 'Variatio 25',
+        'url' : 'https://github.com/DrianHillman/alexa-classical-study-music/raw/master/mp3/Bach-Open-Goldberg-Variations-Variatio-25.mp3'
     },
     {
-        'title' : 'Variatio 2',
-        'url' : ''
+        'title' : 'Variatio 19',
+        'url' : 'https://github.com/DrianHillman/alexa-classical-study-music/raw/master/mp3/Bach-Open-Goldberg-Variations-Variatio-19.mp3'
     }
 ];
 
