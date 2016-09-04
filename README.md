@@ -1,3 +1,15 @@
+# Classical Study Music
+> An Amazon Alexa application
+
+Give Alexa the ability to instantly play background music that allows you to focus on studying, concentrate on your current project, or simply hone-in on the task at hand. For many, light classical music can help with concentration and meditation.
+
+Johann Sebastian Bach - Goldberg Variations, BWV 988
+Complete album courtesy of the OpenGoldbergVariations.org project and performed by the wonderful Kimiko Ishizaka.
+
+######Music Note icon made by [Roundicons](http://www.flaticon.com/authors/roundicons) from [flaticon.com](http://www.flaticon.com) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
+
+> To be commented out later:
+
 # Audio Player Sample Project
 
 The Alexa Skills Kit now allows developers to build skills that play long-form audio content on Alexa devices.  This sample project demonstrates how to use the new interfaces for triggering playback of audio and handling audio player input events.
