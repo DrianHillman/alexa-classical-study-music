@@ -3,7 +3,7 @@
 // Audio Source - The Open Goldberg Variations by Kimiko Ishizaka (J. S. Bach, BWV 988) : http://www.opengoldbergvariations.org/
 var audioData = [
     {
-        'title' : 'Aria',
+        'title' : 'Aria - J.S. Bach: Open Goldberg Variations',
         'url' : 'https://github.com/DrianHillman/alexa-classical-study-music/raw/master/mp3/Bach-Open-Goldberg-Variations-Aria.mp3'
     },
     {
