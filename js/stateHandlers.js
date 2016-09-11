@@ -20,7 +20,7 @@ var stateHandlers = {
             //  Change state to START_MODE
             this.handler.state = constants.states.START_MODE;
 
-            var message = 'Welcome to the AWS Podcast. You can say, play the audio to begin the podcast.';
+            var message = 'Welcome to Classical Study music, featuring music composed by J.S. Bach. You can say, play the audio to begin.';
             var reprompt = 'You can say, play the audio, to begin.';
 
             this.response.speak(message).listen(reprompt);
@@ -41,7 +41,7 @@ var stateHandlers = {
             controller.play.call(this);
         },
         'AMAZON.HelpIntent' : function () {
-            var message = 'Welcome to the AWS Podcast. You can say, play the audio, to begin the podcast.';
+            var message = 'Welcome to Classical Study music, featuring music composed by J.S. Bach. You can say, play the audio to begin.';
             this.response.speak(message).listen(message);
             this.emit(':responseReady');
         },
@@ -82,7 +82,7 @@ var stateHandlers = {
             var reprompt;
             if (this.attributes['playbackFinished']) {
                 this.handler.state = constants.states.START_MODE;
-                message = 'Welcome to the AWS Podcast. You can say, play the audio to begin the podcast.';
+                message = 'Welcome to Classical Study music, featuring music composed by J.S. Bach. You can say, play the audio to begin.';
                 reprompt = 'You can say, play the audio, to begin.';
             } else {
                 this.handler.state = constants.states.RESUME_DECISION_MODE;
@@ -108,7 +108,7 @@ var stateHandlers = {
         'AMAZON.StartOverIntent' : function () { controller.startOver.call(this) },
         'AMAZON.HelpIntent' : function () {
             // This will called while audio is playing and a user says "ask <invocation_name> for help"
-            var message = 'You are listening to the AWS Podcast. You can say, Next or Previous to navigate through the playlist. ' +
+            var message = 'You are listening to the Classical Study Music. You can say, Next or Previous to navigate through the playlist. ' +
                 'At any time, you can say Pause to pause the audio and Resume to resume.';
             this.response.speak(message).listen(message);
             this.emit(':responseReady');
@@ -143,7 +143,7 @@ var stateHandlers = {
             this.emit(':responseReady');
         },
         'AMAZON.YesIntent' : function () { controller.play.call(this) },
-        'AMAZON.NoIntent' : function () { controller.reset.call(this) },
+        'AMAZON.NoIntent' : function () { controller.stop.call(this) },
         'AMAZON.HelpIntent' : function () {
             var message = 'You were listening to ' + audioData[this.attributes['index']].title +
                 ' Would you like to resume?';
@@ -195,18 +195,18 @@ var controller = function () {
 
             var token = String(this.attributes['playOrder'][this.attributes['index']]);
             var playBehavior = 'REPLACE_ALL';
-            var podcast = audioData[this.attributes['playOrder'][this.attributes['index']]];
+            var audio = audioData[this.attributes['playOrder'][this.attributes['index']]];
             var offsetInMilliseconds = this.attributes['offsetInMilliseconds'];
             // Since play behavior is REPLACE_ALL, enqueuedToken attribute need to be set to null.
             this.attributes['enqueuedToken'] = null;
 
             if (canThrowCard.call(this)) {
-                var cardTitle = 'Playing ' + podcast.title;
-                var cardContent = 'Playing ' + podcast.title;
+                var cardTitle = 'Playing ' + audio.title;
+                var cardContent = 'Playing ' + audio.title;
                 this.response.cardRenderer(cardTitle, cardContent, null);
             }
 
-            this.response.audioPlayerPlay(playBehavior, podcast.url, token, null, offsetInMilliseconds);
+            this.response.audioPlayerPlay(playBehavior, audio.url, token, null, offsetInMilliseconds);
             this.emit(':responseReady');
         },
         stop: function () {
@@ -233,7 +233,7 @@ var controller = function () {
                     // Reached at the end. Thus reset state to start mode and stop playing.
                     this.handler.state = constants.states.START_MODE;
 
-                    var message = 'You have reached at the end of the playlist.';
+                    var message = 'You have reached the end of the playlist.';
                     this.response.speak(message).audioPlayerStop();
                     return this.emit(':responseReady');
                 }
@@ -261,7 +261,7 @@ var controller = function () {
                     // Reached at the end. Thus reset state to start mode and stop playing.
                     this.handler.state = constants.states.START_MODE;
 
-                    var message = 'You have reached at the start of the playlist.';
+                    var message = 'You have reached the start of the playlist.';
                     this.response.speak(message).audioPlayerStop();
                     return this.emit(':responseReady');
                 }

@@ -71,11 +71,11 @@ var audioEventHandlers = Alexa.CreateStateHandler(constants.states.PLAY_MODE, {
 
         var enqueueToken = this.attributes['enqueuedToken'];
         var playBehavior = 'ENQUEUE';
-        var podcast = audioData[this.attributes['playOrder'][enqueueIndex]];
+        var audio = audioData[this.attributes['playOrder'][enqueueIndex]];
         var expectedPreviousToken = this.attributes['token'];
         var offsetInMilliseconds = 0;
         
-        this.response.audioPlayerPlay(playBehavior, podcast.url, enqueueToken, expectedPreviousToken, offsetInMilliseconds);
+        this.response.audioPlayerPlay(playBehavior, audio.url, enqueueToken, expectedPreviousToken, offsetInMilliseconds);
         this.emit(':responseReady');
     },
     'PlaybackFailed' : function () {
