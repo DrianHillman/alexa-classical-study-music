@@ -27,18 +27,6 @@ var stateHandlers = {
             this.emit(':responseReady');
         },
         'PlayAudio' : function () {
-            trackEvent(
-                'PlayAudio',
-                'AMAZON.NoIntent',
-                'na',
-                '200',
-                function(err) {
-                    if (err) {
-                        return next(err);
-                    }
-                }
-            );
-            
             if (!this.attributes['playOrder']) {
                 // Initialize Attributes if undefined.
                 this.attributes['playOrder'] = Array.apply(null, {length: audioData.length}).map(Number.call, Number);
