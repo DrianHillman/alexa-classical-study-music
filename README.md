@@ -24,4 +24,6 @@ Courtesy of the [OpenGoldbergVariations.org](http://www.opengoldbergvariations.o
 
 <br>
 
-<center>![Software Engineering Track](https://cldup.com/mjFXrKd-HW.png "A BLOC Apprenticeship Project")</center>
+<div align="center">
+  <img title="A BLOC Apprenticeship Project" alt="Software Engineering Track" src="https://raw.githubusercontent.com/DrianHillman/alexa-classical-study-music/master/img/bloc_logo_small.png" />
+</div>
