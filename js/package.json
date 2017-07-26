@@ -1,7 +1,7 @@
 {
   "name": "classical-study-music",
-  "version": "1.0.0",
-  "description": "A classical music audio player skill.",
+  "version": "1.2.0",
+  "description": "A skill to play classical music.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

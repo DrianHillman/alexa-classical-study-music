@@ -15,12 +15,12 @@ var stateHandlers = {
             this.attributes['index'] = 0;
             this.attributes['offsetInMilliseconds'] = 0;
             this.attributes['loop'] = true;
-            this.attributes['shuffle'] = false;
+            this.attributes['shuffle'] = true;
             this.attributes['playbackIndexChanged'] = true;
             //  Change state to START_MODE
             this.handler.state = constants.states.START_MODE;
 
-            var message = 'Welcome to Classical Study music, featuring music composed by J.S. Bach. You can say, play the audio to begin.';
+            var message = 'Welcome to Classical Study music. You can say, play the audio, to begin.';
             var reprompt = 'You can say, play the audio, to begin.';
 
             this.response.speak(message).listen(reprompt);
@@ -41,7 +41,7 @@ var stateHandlers = {
             controller.play.call(this);
         },
         'AMAZON.HelpIntent' : function () {
-            var message = 'Welcome to Classical Study music, featuring music composed by J.S. Bach. You can say, play the audio to begin.';
+            var message = 'Welcome to Classical Study music. You can say, play the audio, to begin.';
             this.response.speak(message).listen(message);
             this.emit(':responseReady');
         },
@@ -59,7 +59,7 @@ var stateHandlers = {
             // No session ended logic
         },
         'Unhandled' : function () {
-            var message = 'Sorry, I could not understand. Please say, play the audio, to begin the audio.';
+            var message = 'Sorry, I could not understand. Please say, play the audio, to begin.';
             this.response.speak(message).listen(message);
             this.emit(':responseReady');
         }
@@ -87,14 +87,16 @@ var stateHandlers = {
             } else {
                 this.handler.state = constants.states.RESUME_DECISION_MODE;
                 message = 'You were listening to ' + audioData[this.attributes['playOrder'][this.attributes['index']]].title +
-                    ' Would you like to resume?';
-                reprompt = 'You can say yes to resume or no to play from the top.';
+                    '. Would you like to resume?';
+                reprompt = 'You can say yes to resume or no to reset.';
             }
 
             this.response.speak(message).listen(reprompt);
             this.emit(':responseReady');
         },
         'PlayAudio' : function () { controller.play.call(this) },
+        'AMAZON.YesIntent' : function () { controller.play.call(this) },
+        'AMAZON.NoIntent' : function () { controller.reset.call(this) },
         'AMAZON.NextIntent' : function () { controller.playNext.call(this) },
         'AMAZON.PreviousIntent' : function () { controller.playPrevious.call(this) },
         'AMAZON.PauseIntent' : function () { controller.stop.call(this) },
@@ -137,17 +139,20 @@ var stateHandlers = {
          */
         'LaunchRequest' : function () {
             var message = 'You were listening to ' + audioData[this.attributes['playOrder'][this.attributes['index']]].title +
-                ' Would you like to resume?';
-            var reprompt = 'You can say yes to resume or no to play from the top.';
+                '. Would you like to resume?';
+            var reprompt = 'You can say yes to resume or no to reset.';
             this.response.speak(message).listen(reprompt);
             this.emit(':responseReady');
         },
         'AMAZON.YesIntent' : function () { controller.play.call(this) },
-        'AMAZON.NoIntent' : function () { controller.stop.call(this) },
+        'AMAZON.NoIntent' : function () { controller.reset.call(this) },
+        'PlayAudio' : function () { controller.play.call(this) },
+        'AMAZON.ResumeIntent' : function () { controller.play.call(this) },
+        'AMAZON.StartOverIntent' : function () { controller.startOver.call(this) },
         'AMAZON.HelpIntent' : function () {
             var message = 'You were listening to ' + audioData[this.attributes['index']].title +
-                ' Would you like to resume?';
-            var reprompt = 'You can say yes to resume or no to play from the top.';
+                '. Would you like to resume? You can say yes to resume or no to reset.';
+            var reprompt = 'You can say yes to resume or no to reset.';
             this.response.speak(message).listen(reprompt);
             this.emit(':responseReady');
         },
@@ -165,7 +170,7 @@ var stateHandlers = {
             // No session ended logic
         },
         'Unhandled' : function () {
-            var message = 'Sorry, this is not a valid command. Please say help to hear what you can say.';
+            var message = 'Sorry, I could not understand. Please say, play the audio, to begin.';
             this.response.speak(message).listen(message);
             this.emit(':responseReady');
         }
